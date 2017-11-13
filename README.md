@@ -1,2 +1,4 @@
 # hello-world
-Just a test
+Greetings, this is a test for GitHub
+
+*I just made a change here*
