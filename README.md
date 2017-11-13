@@ -1,5 +1,7 @@
-# hello-world
+# SIC - Sistema Internacional Criminalista
 
-Greetings, this is a test for GitHub
+Instituto Tecnologico de Tepic
+Proyecto final - Programacion Orientada a Objetos 10 AM.
 
-*I just made a change here*
+# ¿Que es SIC?
+- Es un modelo de Sistema para el Sistema Internacional Criminalista.
