@@ -27,16 +27,16 @@ public class Usuario {
     private final String DB_PATH,usr,pass;
     
     public Usuario(){
-        this.DB_PATH = "jdbc:mysql://mysql6.gear.host/sicfinal";
-        this.usr="sicfinal";
-        this.pass="Gd5I-LJ-3Z2K";
+        this.DB_PATH = "jdbc:mysql://localhost/sicfinal";
+        this.usr="root";
+        this.pass="";
         
     }
     
     public Usuario(String username, String password) {
-        this.DB_PATH = "jdbc:mysql://mysql6.gear.host/sicfinal";
-        this.usr="sicfinal";
-        this.pass="Gd5I-LJ-3Z2K";
+        this.DB_PATH = "jdbc:mysql://localhost/sicfinal";
+        this.usr="root";
+        this.pass="";
         try {
             query = "SELECT * FROM usuario WHERE nombre_usuario='" + username + "'";
             this.nombre_usuario = username;
