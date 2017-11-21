@@ -33,18 +33,18 @@ public class Usuario {
     
     public Usuario(){
         this.connectionIntents = 0;
-        this.DB_PATH = "jdbc:mysql://mysql6.gear.host/sicfinal";
-        this.DB_USER="sicfinal";
-        this.DB_PASS="Gd5I-LJ-3Z2K";
+        this.DB_PATH = "jdbc:mysql://host/sicfinal";
+        this.DB_USER="";
+        this.DB_PASS="";
         
     }
     
     public Usuario(String username) {
         this.connectionIntents = 0;
         
-        this.DB_PATH = "jdbc:mysql://mysql6.gear.host/sicfinal";
-        this.DB_USER="sicfinal";
-        this.DB_PASS="Gd5I-LJ-3Z2K";
+        this.DB_PATH = "jdbc:mysql://host/sicfinal";
+        this.DB_USER="";
+        this.DB_PASS="";
         this.nombre_usuario=username;
         this.clave_usuario=null;
         /*TODO: Get data in a new thread and run a loading bar until it's done.
