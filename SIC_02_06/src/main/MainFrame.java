@@ -11,15 +11,19 @@ package main;
  */
 import java.io.File;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import static javax.swing.JOptionPane.showMessageDialog;
 import operations.*;
+import personas.Usuario;
 
 public class MainFrame extends javax.swing.JFrame {
     AlertaInternacional ai;
+    ArrayList<AlertaInternacional> alertas;
     String ais;
     Write writer;
     File file;
+    private Usuario actualUser;
     
     
 
@@ -31,7 +35,19 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         ai=new AlertaInternacional();
         writer=new Write();
+        alertas=new ArrayList<>();
         //crim=new Criminal();
+    }
+    
+    public MainFrame(Usuario u){
+        this.ais = "";
+        initComponents();
+        ai=new AlertaInternacional();
+        writer=new Write();
+        actualUser=u;
+        txtSysTitle.setText("Sistema Internacional Criminalista - Bienvenido "+actualUser.getNombre_usuario());
+        alertas=new ArrayList<>();
+        
     }
 
     public void setFile(File f){
@@ -47,7 +63,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        txtSysTitle = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -72,10 +88,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(51, 102, 255));
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Microsoft Yi Baiti", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Sistema Internacional Criminalista");
+        txtSysTitle.setBackground(new java.awt.Color(255, 255, 255));
+        txtSysTitle.setFont(new java.awt.Font("Microsoft Yi Baiti", 0, 18)); // NOI18N
+        txtSysTitle.setForeground(new java.awt.Color(255, 255, 255));
+        txtSysTitle.setText("Sistema Internacional Criminalista");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -83,12 +99,12 @@ public class MainFrame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(txtSysTitle)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(txtSysTitle, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
@@ -314,7 +330,6 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -333,5 +348,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtArea;
+    private javax.swing.JLabel txtSysTitle;
     // End of variables declaration//GEN-END:variables
 }

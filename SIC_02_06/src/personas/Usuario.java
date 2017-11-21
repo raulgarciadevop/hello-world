@@ -5,12 +5,14 @@
  */
 package personas;
 
+import com.mysql.jdbc.exceptions.jdbc4.CommunicationsException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import static javax.swing.JOptionPane.showMessageDialog;
+//import operations.DownloadFromDB;
 /**
  *
  * @author Administrator
@@ -20,29 +22,52 @@ public class Usuario {
     private String nombre_usuario;
     private String clave_usuario;
     private int pin_usuario;
+    private int connectionIntents;
+    
+    //private String enteredPass;
     
     private Connection con;
     private Statement sentencia;
     private String query;
-    private final String DB_PATH,usr,pass;
+    private String DB_PATH,DB_USER,DB_PASS;
     
     public Usuario(){
-        this.DB_PATH = "jdbc:mysql://localhost/sicfinal";
-        this.usr="root";
-        this.pass="";
+        this.connectionIntents = 0;
+        this.DB_PATH = "jdbc:mysql://mysql6.gear.host/sicfinal";
+        this.DB_USER="sicfinal";
+        this.DB_PASS="Gd5I-LJ-3Z2K";
         
     }
     
-    public Usuario(String username, String password) {
-        this.DB_PATH = "jdbc:mysql://localhost/sicfinal";
-        this.usr="root";
-        this.pass="";
+    public Usuario(String username) {
+        this.connectionIntents = 0;
+        
+        this.DB_PATH = "jdbc:mysql://mysql6.gear.host/sicfinal";
+        this.DB_USER="sicfinal";
+        this.DB_PASS="Gd5I-LJ-3Z2K";
+        this.nombre_usuario=username;
+        this.clave_usuario=null;
+        /*TODO: Get data in a new thread and run a loading bar until it's done.
+        Thread dwFDB=new Thread(new DownloadFromDB(username));
+        dwFDB.start();
+        */
+        
+        
+        //getDataFromDB(username,password);
+        getDataFromDB();
+
+//catch(com.mysql.jdbc.exceptions.jdbc4.CommunicationsException e){
+            
+        //}
+    }
+    
+    //private void getDataFromDB(String usr,String pass){
+    private void getDataFromDB(){
         try {
-            query = "SELECT * FROM usuario WHERE nombre_usuario='" + username + "'";
-            this.nombre_usuario = username;
+            query = "SELECT * FROM usuario WHERE nombre_usuario='" + nombre_usuario + "'";//+" AND clave_usuario='"+clave_usuario+"'"
 
             Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(DB_PATH, usr, pass);
+            con = DriverManager.getConnection(DB_PATH, DB_USER, DB_PASS);
             sentencia = con.createStatement();
             ResultSet resultado = sentencia.executeQuery(query);
 
@@ -52,6 +77,7 @@ public class Usuario {
                 this.pin_usuario = resultado.getInt("pin_usuario");
 
             }
+            showMessageDialog(null, "= "+nombre_usuario+" "+clave_usuario+""+id_usuario+" "+pin_usuario+"\n\n"+DB_PATH+"\n"+DB_USER+"\n"+DB_PASS);
             /*
             while(resultado.next()){
             choice1.add(resultado.getString("nombre_usuario"));
@@ -60,13 +86,33 @@ public class Usuario {
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
+        }catch(CommunicationsException e){
+            this.DB_PATH = "jdbc:mysql://localhost/sic_final";
+            this.DB_USER="root";
+            this.DB_PASS="";
+            connectionIntents++;
+            if(connectionIntents<=3)
+                //getDataFromDB(nombre_usuario,clave_usuario);
+                getDataFromDB();
+            else{
+                showMessageDialog(null, "Error: el sistema no esta disponible en este momento, por favor intente mas tarde.\n\n Error code: 01SQLCOM ");
+                System.exit(0);
+            }
+            
+                
+            
+        }catch(SQLException e){
             e.printStackTrace();
+            showMessageDialog(null, "Error SQL.");
         }
     }
     
-    public boolean authActualUP(String user, String pass){
-        return user.equals(this.nombre_usuario) && pass.equals(this.clave_usuario);
+    
+    
+    //public boolean authActualUP(String user, String pass){
+    public boolean authActualUP(String pass){
+        //return user.equals(this.nombre_usuario) && pass.equals(this.clave_usuario);
+        return pass.equals(this.clave_usuario);
     }
     
     public boolean authActualPin(String pin){

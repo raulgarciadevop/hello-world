@@ -60,6 +60,8 @@ public class LoginForm extends javax.swing.JFrame {
         //chargeBD();
         
         userObj=new Usuario();
+        pbValidando.setVisible(false);
+        txtValidando.setVisible(false);
         
     }
     
@@ -99,10 +101,10 @@ public class LoginForm extends javax.swing.JFrame {
     private void verify() throws UsuarioInexistente{
         if(!txtUser.getText().isEmpty() && !txtPass.getText().isEmpty()){
             
-            userObj = new Usuario(txtUser.getText(), txtPass.getText());
+            userObj = new Usuario(txtUser.getText());
                         
             //Call method from usuario
-            if (userObj.authActualUP(txtUser.getText(), txtPass.getText())) {
+            if (userObj.authActualUP(txtPass.getText())) {
                 enablePin(true);
                 enableUP(false);
                 txtUser.setText("");
@@ -145,12 +147,13 @@ public class LoginForm extends javax.swing.JFrame {
     private void authP(String pinn){
         if(userObj.authActualPin(pinn)){
             this.dispose();
-            new MainFrame().setVisible(true);
+            new MainFrame(userObj).setVisible(true);
             showMessageDialog(null, "Valido");
-        }else{
+        }else{//TODO: Add method to alert mobile user
             this.setEnabled(false);
             //System.exit(0);
             showMessageDialog(null, "Invalido");
+            
         }
         
         /*
@@ -187,6 +190,8 @@ public class LoginForm extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
+        pbValidando = new javax.swing.JProgressBar();
+        txtValidando = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         btn2 = new javax.swing.JButton();
         btn3 = new javax.swing.JButton();
@@ -283,6 +288,8 @@ public class LoginForm extends javax.swing.JFrame {
             }
         });
 
+        txtValidando.setText("Validando...");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -290,17 +297,24 @@ public class LoginForm extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnExit)
+                .addGap(18, 18, 18)
+                .addComponent(pbValidando, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtValidando)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(btnExit))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(btnExit)
+                        .addComponent(txtValidando))
+                    .addComponent(pbValidando, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -690,7 +704,9 @@ public class LoginForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JProgressBar pbValidando;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUser;
+    private javax.swing.JLabel txtValidando;
     // End of variables declaration//GEN-END:variables
 }
