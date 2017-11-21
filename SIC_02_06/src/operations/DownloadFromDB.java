@@ -29,9 +29,9 @@ public class DownloadFromDB implements Runnable {
     private int connectionIntents;
 
     public DownloadFromDB(String nombre_usuario) {
-        this.DB_PATH = "jdbc:mysql://mysql6.gear.host/sicfinal";
-        this.DB_USER="sicfinal";
-        this.DB_PASS="Gd5I-LJ-3Z2K";
+        this.DB_PATH = "jdbc:mysql://host/sicfinal";
+        this.DB_USER="";
+        this.DB_PASS="";
         this.nombre_usuario = nombre_usuario;
         this.clave_usuario = null;
     }
