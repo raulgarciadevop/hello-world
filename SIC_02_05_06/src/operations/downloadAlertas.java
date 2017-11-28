@@ -11,6 +11,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import static javax.swing.JOptionPane.showMessageDialog;
 import main.MainFrame;
 
@@ -29,12 +33,14 @@ public class downloadAlertas implements Runnable {
     private int pin_usuario;
     private int connectionIntents;
     MainFrame mf;
+    private HashMap<Integer,AlertaInternacional> hmap;
 
     public downloadAlertas(MainFrame m) {
         this.DB_PATH = "jdbc:mysql://mysql6.gear.host/sicfinal";
         this.DB_USER="sicfinal";
         this.DB_PASS="Gd5I-LJ-3Z2K";
         mf=m;
+        hmap=new HashMap<>();
     }
     
     public void getData(){
@@ -47,13 +53,22 @@ public class downloadAlertas implements Runnable {
             ResultSet resultado = sentencia.executeQuery(query);
 
             while (resultado.next()) {
-                mf.alertas.add(new AlertaInternacional(resultado.getString("titulo_alerta"),resultado.getInt("importancia_alerta"),resultado.getString("descripcion_alerta"),resultado.getString("ubicacion_alerta")));
+                hmap.put(resultado.getInt("id_alerta"), new AlertaInternacional(resultado.getString("titulo_alerta"),resultado.getInt("importancia_alerta"),resultado.getString("descripcion_alerta"),resultado.getString("ubicacion_alerta")));
+                //mf.alertas.add(new AlertaInternacional(resultado.getString("titulo_alerta"),resultado.getInt("importancia_alerta"),resultado.getString("descripcion_alerta"),resultado.getString("ubicacion_alerta")));
 
             }
+            Set set=hmap.entrySet();
+            Iterator iterator=set.iterator();
+            
             String ss="";
+            while(iterator.hasNext()){
+                Map.Entry mentry=(Map.Entry)iterator.next();
+                ss=ss+"\n"+mentry.getValue().toString();
+            }
+            /*
             for(AlertaInternacional str:mf.alertas){
                 ss=ss+"\n"+str.toString();
-            }
+            }*/
             mf.setTxtArea(ss);
             /*
             while(resultado.next()){

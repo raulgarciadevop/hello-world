@@ -9,6 +9,9 @@ package main;
  *
  * @author Administrator
  */
+
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -41,6 +44,7 @@ public class MainFrame extends javax.swing.JFrame {
         Thread dwFDB=new Thread(new downloadAlertas(this));//descarga y actualiza las alertas
         dwFDB.start();
         //crim=new Criminal();
+        showMessageDialog(null, "K pez");
     }
     
     public MainFrame(Usuario u){
@@ -165,6 +169,7 @@ public class MainFrame extends javax.swing.JFrame {
         txtArea.setColumns(20);
         txtArea.setRows(5);
         jScrollPane1.setViewportView(txtArea);
+        txtArea.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2, true));
 
         jToolBar1.add(jScrollPane1);
 
