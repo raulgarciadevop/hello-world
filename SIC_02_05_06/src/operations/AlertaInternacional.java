@@ -32,9 +32,9 @@ public class AlertaInternacional {
         this.ubicacion = ubicacion;
         
         this.connectionIntents = 0;
-        this.DB_PATH = "jdbc:mysql://mysql6.gear.host/sicfinal";
-        this.DB_USER="sicfinal";
-        this.DB_PASS="Gd5I-LJ-3Z2K";
+        this.DB_PATH = "jdbc:mysql://den1.mysql6.gear.host/sicpublic";
+        this.DB_USER="sicpublic";
+        this.DB_PASS="Zk4F!3OF4H9~";
     }
     
     public AlertaInternacional(){
@@ -93,8 +93,16 @@ public class AlertaInternacional {
 
     @Override
     public String toString() {
-        return "Titulo: "+titulo+"\nTipo: "+importancia+"\nDescripcion: "+descripcion+"\n\n";
+        //return "Titulo: "+titulo+"\nTipo: "+importancia+"\nDescripcion: "+descripcion+"\n\n";
+        return "Titulo: "+titulo+". Tipo: "+importancia+". Descripcion: "+descripcion+".\n\n";
     }
+    
+    /*
+    public String toString(boolean a) {
+        return "Titulo: "+titulo+". Tipo: "+importancia+". Descripcion: "+descripcion+".\n\n";
+    }
+    */
+    
     
     public void downloadData(){
         

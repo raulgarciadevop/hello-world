@@ -183,7 +183,7 @@ public class NewAlerta extends javax.swing.JFrame {
         alerta=new AlertaInternacional(txtTitulo.getText(),jcbImportancia.getSelectedIndex(),txtDescripcion.getText(),jcbUbicacion.getSelectedItem().toString());
         alerta.insertarEnDB();
         mf.alertas.add(alerta);//try catch
-        mf.setTxtArea( mf.getTxtArea()+"\n"+alerta.toString());
+        //mf.setTxtArea( mf.getTxtArea()+"\n"+alerta.toString());
         
         int opt=showOptionDialog(null, "¿Desea crear mas alertas?","Mas alertas",JOptionPane.YES_NO_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
             switch (opt) {

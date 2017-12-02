@@ -7,6 +7,8 @@ package main;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import static javax.swing.JOptionPane.showMessageDialog;
+import personas.Usuario;
 
 /**
  *
@@ -17,6 +19,8 @@ public class PinFrame extends javax.swing.JFrame {
     String pin;
     int[] vs={0,1,2,3,4,5,6,7,8,9};
     ArrayList<Integer> values;
+    private Usuario userObj;
+    private boolean verified;
     
 
     /**
@@ -29,6 +33,7 @@ public class PinFrame extends javax.swing.JFrame {
         entered=0;
         pin="";
         sort();
+        verified=false;
     }
     
     private void sort(){
@@ -51,6 +56,24 @@ public class PinFrame extends javax.swing.JFrame {
     private void verify(){
         
     }
+    
+    private void authP(String pinn){
+        if(userObj.authActualPin(pinn)){
+            verified=true;
+            //this.dispose();
+            //new MainFrame(userObj).setVisible(true);
+            //showMessageDialog(null, "Valido");
+        }else{//TODO: Add method to alert mobile user
+            this.setEnabled(false);
+            //System.exit(0);
+            verified=false;
+            
+        }
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,7 +84,7 @@ public class PinFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btn1 = new javax.swing.JButton();
+        RightFrame = new javax.swing.JPanel();
         btn2 = new javax.swing.JButton();
         btn3 = new javax.swing.JButton();
         btn4 = new javax.swing.JButton();
@@ -69,26 +92,32 @@ public class PinFrame extends javax.swing.JFrame {
         btn6 = new javax.swing.JButton();
         btn7 = new javax.swing.JButton();
         btn8 = new javax.swing.JButton();
+        btn1 = new javax.swing.JButton();
         btn9 = new javax.swing.JButton();
         btn0 = new javax.swing.JButton();
-        txtTest = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Autorizar");
+        setAlwaysOnTop(true);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
 
-        btn1.setText("1");
-        btn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn1ActionPerformed(evt);
-            }
-        });
+        RightFrame.setBackground(new java.awt.Color(0, 0, 0));
+        RightFrame.setEnabled(false);
 
-        btn2.setText("2");
+        btn2.setBackground(new java.awt.Color(0, 0, 0));
+        btn2.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        btn2.setForeground(new java.awt.Color(255, 255, 255));
+        btn2.setText("1");
         btn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn2ActionPerformed(evt);
             }
         });
 
+        btn3.setBackground(new java.awt.Color(0, 0, 0));
+        btn3.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        btn3.setForeground(new java.awt.Color(255, 255, 255));
         btn3.setText("1");
         btn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,6 +125,9 @@ public class PinFrame extends javax.swing.JFrame {
             }
         });
 
+        btn4.setBackground(new java.awt.Color(0, 0, 0));
+        btn4.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        btn4.setForeground(new java.awt.Color(255, 255, 255));
         btn4.setText("1");
         btn4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +135,9 @@ public class PinFrame extends javax.swing.JFrame {
             }
         });
 
+        btn5.setBackground(new java.awt.Color(0, 0, 0));
+        btn5.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        btn5.setForeground(new java.awt.Color(255, 255, 255));
         btn5.setText("1");
         btn5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +145,9 @@ public class PinFrame extends javax.swing.JFrame {
             }
         });
 
+        btn6.setBackground(new java.awt.Color(0, 0, 0));
+        btn6.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        btn6.setForeground(new java.awt.Color(255, 255, 255));
         btn6.setText("1");
         btn6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +155,9 @@ public class PinFrame extends javax.swing.JFrame {
             }
         });
 
+        btn7.setBackground(new java.awt.Color(0, 0, 0));
+        btn7.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        btn7.setForeground(new java.awt.Color(255, 255, 255));
         btn7.setText("1");
         btn7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +165,9 @@ public class PinFrame extends javax.swing.JFrame {
             }
         });
 
+        btn8.setBackground(new java.awt.Color(0, 0, 0));
+        btn8.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        btn8.setForeground(new java.awt.Color(255, 255, 255));
         btn8.setText("1");
         btn8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +175,19 @@ public class PinFrame extends javax.swing.JFrame {
             }
         });
 
+        btn1.setBackground(new java.awt.Color(0, 0, 0));
+        btn1.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        btn1.setForeground(new java.awt.Color(255, 255, 255));
+        btn1.setText("1");
+        btn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn1ActionPerformed(evt);
+            }
+        });
+
+        btn9.setBackground(new java.awt.Color(0, 0, 0));
+        btn9.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        btn9.setForeground(new java.awt.Color(255, 255, 255));
         btn9.setText("1");
         btn9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +195,9 @@ public class PinFrame extends javax.swing.JFrame {
             }
         });
 
+        btn0.setBackground(new java.awt.Color(0, 0, 0));
+        btn0.setFont(new java.awt.Font("Arial Black", 1, 11)); // NOI18N
+        btn0.setForeground(new java.awt.Color(255, 255, 255));
         btn0.setText("1");
         btn0.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,171 +205,195 @@ public class PinFrame extends javax.swing.JFrame {
             }
         });
 
-        txtTest.setText("-");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout RightFrameLayout = new javax.swing.GroupLayout(RightFrame);
+        RightFrame.setLayout(RightFrameLayout);
+        RightFrameLayout.setHorizontalGroup(
+            RightFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RightFrameLayout.createSequentialGroup()
                 .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(RightFrameLayout.createSequentialGroup()
                 .addComponent(btn4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(RightFrameLayout.createSequentialGroup()
                 .addComponent(btn7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn0, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtTest))
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(RightFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn0, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(RightFrameLayout.createSequentialGroup()
                         .addComponent(btn8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        RightFrameLayout.setVerticalGroup(
+            RightFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(RightFrameLayout.createSequentialGroup()
+                .addGroup(RightFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(RightFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(RightFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn7, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn0, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTest)))
+                .addComponent(btn0, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(RightFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(RightFrame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
-        // TODO add your handling code here:
-        if(entered<5){
-            pin = pin + btn1.getText();
-            txtTest.setText(pin);
-            entered++;
-        }else{
-            verify();
-        }
-        
-    }//GEN-LAST:event_btn1ActionPerformed
-
     private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn2ActionPerformed
         // TODO add your handling code here:
-        if(entered<5){
+        if(entered>=3){
             pin = pin + btn2.getText();
-            txtTest.setText(pin);
-            entered++;
+
+            authP(pin);
         }else{
-            verify();
+            pin = pin + btn2.getText();
+
+            entered++;
         }
     }//GEN-LAST:event_btn2ActionPerformed
 
     private void btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn3ActionPerformed
         // TODO add your handling code here:
-        if(entered<5){
+        if(entered>=3){
             pin = pin + btn3.getText();
-            txtTest.setText(pin);
-            entered++;
+
+            authP(pin);
         }else{
-            verify();
+            pin = pin + btn3.getText();
+
+            entered++;
         }
     }//GEN-LAST:event_btn3ActionPerformed
 
     private void btn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn4ActionPerformed
         // TODO add your handling code here:
-        if(entered<5){
+        if(entered>=3){
             pin = pin + btn4.getText();
-            txtTest.setText(pin);
-            entered++;
+
+            //authP(pin);
         }else{
-            verify();
+            pin = pin + btn4.getText();
+
+            entered++;
         }
     }//GEN-LAST:event_btn4ActionPerformed
 
     private void btn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn5ActionPerformed
         // TODO add your handling code here:
-        if(entered<5){
+        if(entered>=3){
             pin = pin + btn5.getText();
-            txtTest.setText(pin);
-            entered++;
+
+            authP(pin);
         }else{
-            verify();
+            pin = pin + btn5.getText();
+
+            entered++;
         }
     }//GEN-LAST:event_btn5ActionPerformed
 
     private void btn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn6ActionPerformed
         // TODO add your handling code here:
-        if(entered<5){
+        if(entered>=3){
             pin = pin + btn6.getText();
-            txtTest.setText(pin);
-            entered++;
+
+            authP(pin);
         }else{
-            verify();
+            pin = pin + btn6.getText();
+
+            entered++;
         }
     }//GEN-LAST:event_btn6ActionPerformed
 
     private void btn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn7ActionPerformed
         // TODO add your handling code here:
-        if(entered<5){
+        if(entered>=3){
             pin = pin + btn7.getText();
-            txtTest.setText(pin);
-            entered++;
+
+            authP(pin);
         }else{
-            verify();
+            pin = pin + btn7.getText();
+
+            entered++;
         }
     }//GEN-LAST:event_btn7ActionPerformed
 
     private void btn8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn8ActionPerformed
         // TODO add your handling code here:
-        if(entered<5){
+        if(entered>=3){
             pin = pin + btn8.getText();
-            txtTest.setText(pin);
-            entered++;
+
+            authP(pin);
         }else{
-            verify();
+            pin = pin + btn8.getText();
+
+            entered++;
         }
     }//GEN-LAST:event_btn8ActionPerformed
 
+    private void btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn1ActionPerformed
+        // TODO add your handling code here:
+        if(entered>=3){
+            pin = pin + btn1.getText();
+
+            authP(pin);
+        }else{
+            pin = pin + btn1.getText();
+
+            entered++;
+        }
+    }//GEN-LAST:event_btn1ActionPerformed
+
     private void btn9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn9ActionPerformed
         // TODO add your handling code here:
-        if(entered<5){
+        if(entered>=3){
             pin = pin + btn9.getText();
-            txtTest.setText(pin);
-            entered++;
+
+            authP(pin);
         }else{
-            verify();
+            pin = pin + btn9.getText();
+
+            entered++;
         }
     }//GEN-LAST:event_btn9ActionPerformed
 
     private void btn0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn0ActionPerformed
         // TODO add your handling code here:
-        if(entered<5){
+        if(entered>=3){
             pin = pin + btn0.getText();
-            txtTest.setText(pin);
-            entered++;
+
+            authP(pin);
+
         }else{
-            verify();
+            pin = pin + btn0.getText();
+
+            entered++;
         }
     }//GEN-LAST:event_btn0ActionPerformed
 
@@ -350,6 +434,7 @@ public class PinFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel RightFrame;
     private javax.swing.JButton btn0;
     private javax.swing.JButton btn1;
     private javax.swing.JButton btn2;
@@ -360,6 +445,5 @@ public class PinFrame extends javax.swing.JFrame {
     private javax.swing.JButton btn7;
     private javax.swing.JButton btn8;
     private javax.swing.JButton btn9;
-    private javax.swing.JLabel txtTest;
     // End of variables declaration//GEN-END:variables
 }
